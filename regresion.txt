@@ -1,0 +1,490 @@
+
+R version 3.6.1 (2019-07-05) -- "Action of the Toes"
+Copyright (C) 2019 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> setwd("C:\\Lenguaje R\\data")
+> getwd()
+[1] "C:/Lenguaje R/data"
+> datos <- read.csv(".\\Ch3_marketing.csv")
+> summary(datos)
+ google_adwords      facebook        twitter       marketing_total     revenues       employees      pop_density
+ Min.   : 23.65   Min.   : 8.00   Min.   :  5.89   Min.   : 53.65   Min.   :30.45   Min.   : 3.000   High  :52  
+ 1st Qu.: 97.25   1st Qu.:19.37   1st Qu.: 20.94   1st Qu.:158.41   1st Qu.:40.33   1st Qu.: 6.000   Low   :68  
+ Median :169.47   Median :33.66   Median : 34.59   Median :245.56   Median :43.99   Median : 8.000   Medium:52  
+ Mean   :169.87   Mean   :33.87   Mean   : 38.98   Mean   :242.72   Mean   :44.61   Mean   : 7.866              
+ 3rd Qu.:243.10   3rd Qu.:47.80   3rd Qu.: 52.94   3rd Qu.:322.62   3rd Qu.:48.61   3rd Qu.:10.000              
+ Max.   :321.00   Max.   :62.17   Max.   :122.19   Max.   :481.00   Max.   :58.38   Max.   :12.000              
+> datos$pop_density <- factor(datos$pop_density,ordered = TRUE,levels=c("Low","Medium","High"))
+> str(datos)
+'data.frame':	172 obs. of  7 variables:
+ $ google_adwords : num  65.7 39.1 174.8 34.4 78.2 ...
+ $ facebook       : num  47.9 55.2 52 62 40.9 ...
+ $ twitter        : num  52.5 77.4 68 86.9 30.4 ...
+ $ marketing_total: num  166 172 295 183 150 ...
+ $ revenues       : num  39.3 38.9 49.5 40.6 40.2 ...
+ $ employees      : int  5 7 11 7 9 3 10 6 6 4 ...
+ $ pop_density    : Ord.factor w/ 3 levels "Low"<"Medium"<..: 3 2 2 3 1 3 1 3 2 1 ...
+> cor(datos[,1:6])
+                google_adwords   facebook   twitter marketing_total  revenues employees
+google_adwords      1.00000000 0.07643216 0.0989750       0.9473566 0.7662461 0.6610312
+facebook            0.07643216 1.00000000 0.3543410       0.3102232 0.5778213 0.4101966
+twitter             0.09897500 0.35434096 1.0000000       0.3758691 0.2696854 0.2290618
+marketing_total     0.94735659 0.31022316 0.3758691       1.0000000 0.8530354 0.7210171
+revenues            0.76624608 0.57782131 0.2696854       0.8530354 1.0000000 0.7656857
+employees           0.66103123 0.41019661 0.2290618       0.7210171 0.7656857 1.0000000
+> install.packages(psych)
+Error in install.packages : object 'psych' not found
+> install.packages("psych")
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+Installing package into ‘C:/Users/52473/Documents/R/win-library/3.6’
+(as ‘lib’ is unspecified)
+also installing the dependency ‘mnormt’
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/mnormt_1.5-5.zip'
+Content type 'application/zip' length 117964 bytes (115 KB)
+downloaded 115 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/psych_1.8.12.zip'
+Content type 'application/zip' length 5936471 bytes (5.7 MB)
+downloaded 5.7 MB
+
+package ‘mnormt’ successfully unpacked and MD5 sums checked
+package ‘psych’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\52473\AppData\Local\Temp\RtmpoBP5Hb\downloaded_packages
+> library(psych)
+> corr.test(datos[,1:6])
+Call:corr.test(x = datos[, 1:6])
+Correlation matrix 
+                google_adwords facebook twitter marketing_total revenues employees  //correlaciones significativas las que sean menor a 0.05
+google_adwords            1.00     0.08    0.10            0.95     0.77      0.66
+facebook                  0.08     1.00    0.35            0.31     0.58      0.41
+twitter                   0.10     0.35    1.00            0.38     0.27      0.23
+marketing_total           0.95     0.31    0.38            1.00     0.85      0.72
+revenues                  0.77     0.58    0.27            0.85     1.00      0.77
+employees                 0.66     0.41    0.23            0.72     0.77      1.00
+Sample Size 
+[1] 172
+Probability values (Entries above the diagonal are adjusted for multiple tests.) 
+                google_adwords facebook twitter marketing_total revenues employees
+google_adword
+
+
+library(corrgram)
+
+//obtener grafico de correlaciones multivariadas 
+corrgram(datos[,1;6],order=FALSE,lower.panel=panel.conf,upper.panel=panel.ellipse,diag.panel=panel.minmax,text.panel=panel.txt)
+
+corrgram(datos[,1;6],order=FALSE,lower.panel=panel.conf,upper.panel=panel.ellipse,diag.panel=panel.minmax,text.panel=panel.txt)
+
+
+
+//nuevo
+
+
+R version 3.6.1 (2019-07-05) -- "Action of the Toes"
+Copyright (C) 2019 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> setwd("C:\\Lenguaje R\\data")
+> getwd()
+[1] "C:/Lenguaje R/data"
+> datos <- read.csv(".\\Ch3_marketing.csv")
+> summary(datos)
+ google_adwords      facebook        twitter       marketing_total     revenues       employees      pop_density
+ Min.   : 23.65   Min.   : 8.00   Min.   :  5.89   Min.   : 53.65   Min.   :30.45   Min.   : 3.000   High  :52  
+ 1st Qu.: 97.25   1st Qu.:19.37   1st Qu.: 20.94   1st Qu.:158.41   1st Qu.:40.33   1st Qu.: 6.000   Low   :68  
+ Median :169.47   Median :33.66   Median : 34.59   Median :245.56   Median :43.99   Median : 8.000   Medium:52  
+ Mean   :169.87   Mean   :33.87   Mean   : 38.98   Mean   :242.72   Mean   :44.61   Mean   : 7.866              
+ 3rd Qu.:243.10   3rd Qu.:47.80   3rd Qu.: 52.94   3rd Qu.:322.62   3rd Qu.:48.61   3rd Qu.:10.000              
+ Max.   :321.00   Max.   :62.17   Max.   :122.19   Max.   :481.00   Max.   :58.38   Max.   :12.000              
+> datos$pop_density <- factor(datos$pop_density,ordered = TRUE,levels=c("Low","Medium","High"))
+> str(datos)
+'data.frame':	172 obs. of  7 variables:
+ $ google_adwords : num  65.7 39.1 174.8 34.4 78.2 ...
+ $ facebook       : num  47.9 55.2 52 62 40.9 ...
+ $ twitter        : num  52.5 77.4 68 86.9 30.4 ...
+ $ marketing_total: num  166 172 295 183 150 ...
+ $ revenues       : num  39.3 38.9 49.5 40.6 40.2 ...
+ $ employees      : int  5 7 11 7 9 3 10 6 6 4 ...
+ $ pop_density    : Ord.factor w/ 3 levels "Low"<"Medium"<..: 3 2 2 3 1 3 1 3 2 1 ...
+> cor(datos[,1:6])
+                google_adwords   facebook   twitter marketing_total  revenues employees
+google_adwords      1.00000000 0.07643216 0.0989750       0.9473566 0.7662461 0.6610312
+facebook            0.07643216 1.00000000 0.3543410       0.3102232 0.5778213 0.4101966
+twitter             0.09897500 0.35434096 1.0000000       0.3758691 0.2696854 0.2290618
+marketing_total     0.94735659 0.31022316 0.3758691       1.0000000 0.8530354 0.7210171
+revenues            0.76624608 0.57782131 0.2696854       0.8530354 1.0000000 0.7656857
+employees           0.66103123 0.41019661 0.2290618       0.7210171 0.7656857 1.0000000
+> install.packages(psych)
+Error in install.packages : object 'psych' not found
+> install.packages("psych")
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+Installing package into ‘C:/Users/52473/Documents/R/win-library/3.6’
+(as ‘lib’ is unspecified)
+also installing the dependency ‘mnormt’
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/mnormt_1.5-5.zip'
+Content type 'application/zip' length 117964 bytes (115 KB)
+downloaded 115 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/psych_1.8.12.zip'
+Content type 'application/zip' length 5936471 bytes (5.7 MB)
+downloaded 5.7 MB
+
+package ‘mnormt’ successfully unpacked and MD5 sums checked
+package ‘psych’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\52473\AppData\Local\Temp\RtmpoBP5Hb\downloaded_packages
+> library(psych)
+> corr.test(datos[,1:6])
+Call:corr.test(x = datos[, 1:6])
+Correlation matrix 
+                google_adwords facebook twitter marketing_total revenues employees
+google_adwords            1.00     0.08    0.10            0.95     0.77      0.66
+facebook                  0.08     1.00    0.35            0.31     0.58      0.41
+twitter                   0.10     0.35    1.00            0.38     0.27      0.23
+marketing_total           0.95     0.31    0.38            1.00     0.85      0.72
+revenues                  0.77     0.58    0.27            0.85     1.00      0.77
+employees                 0.66     0.41    0.23            0.72     0.77      1.00
+Sample Size 
+[1] 172
+Probability values (Entries above the diagonal are adjusted for multiple tests.) 
+                google_adwords facebook twitter marketing_total revenues employees
+google_adwords            0.00     0.39    0.39               0        0      0.00
+facebook                  0.32     0.00    0.00               0        0      0.00
+twitter                   0.20     0.00    0.00               0        0      0.01
+marketing_total           0.00     0.00    0.00               0        0      0.00
+revenues                  0.00     0.00    0.00               0        0      0.00
+employees                 0.00     0.00    0.00               0        0      0.00
+
+ To see confidence intervals of the correlations, print with the short=FALSE option
+> install.packages("corrgram")
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+Installing package into ‘C:/Users/52473/Documents/R/win-library/3.6’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘plyr’, ‘labeling’, ‘munsell’, ‘RColorBrewer’, ‘iterators’, ‘gtable’, ‘lazyeval’, ‘reshape2’, ‘scales’, ‘viridisLite’, ‘withr’, ‘gridExtra’, ‘bitops’, ‘foreach’, ‘ggplot2’, ‘viridis’, ‘gtools’, ‘gdata’, ‘caTools’, ‘TSP’, ‘qap’, ‘gclus’, ‘dendextend’, ‘colorspace’, ‘gplots’, ‘registry’, ‘seriation’
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/plyr_1.8.4.zip'
+Content type 'application/zip' length 1302143 bytes (1.2 MB)
+downloaded 1.2 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/labeling_0.3.zip'
+Content type 'application/zip' length 62937 bytes (61 KB)
+downloaded 61 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/munsell_0.5.0.zip'
+Content type 'application/zip' length 245842 bytes (240 KB)
+downloaded 240 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/RColorBrewer_1.1-2.zip'
+Content type 'application/zip' length 55569 bytes (54 KB)
+downloaded 54 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/iterators_1.0.12.zip'
+Content type 'application/zip' length 343888 bytes (335 KB)
+downloaded 335 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/gtable_0.3.0.zip'
+Content type 'application/zip' length 434537 bytes (424 KB)
+downloaded 424 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/lazyeval_0.2.2.zip'
+Content type 'application/zip' length 173222 bytes (169 KB)
+downloaded 169 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/reshape2_1.4.3.zip'
+Content type 'application/zip' length 627622 bytes (612 KB)
+downloaded 612 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/scales_1.0.0.zip'
+Content type 'application/zip' length 1074164 bytes (1.0 MB)
+downloaded 1.0 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/viridisLite_0.3.0.zip'
+Content type 'application/zip' length 60757 bytes (59 KB)
+downloaded 59 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/withr_2.1.2.zip'
+Content type 'application/zip' length 151924 bytes (148 KB)
+downloaded 148 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/gridExtra_2.3.zip'
+Content type 'application/zip' length 1109182 bytes (1.1 MB)
+downloaded 1.1 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/bitops_1.0-6.zip'
+Content type 'application/zip' length 38469 bytes (37 KB)
+downloaded 37 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/foreach_1.4.7.zip'
+Content type 'application/zip' length 419932 bytes (410 KB)
+downloaded 410 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/ggplot2_3.2.1.zip'
+Content type 'application/zip' length 3975412 bytes (3.8 MB)
+downloaded 3.8 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/viridis_0.5.1.zip'
+Content type 'application/zip' length 1866917 bytes (1.8 MB)
+downloaded 1.8 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/gtools_3.8.1.zip'
+Content type 'application/zip' length 327154 bytes (319 KB)
+downloaded 319 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/gdata_2.18.0.zip'
+Content type 'application/zip' length 1264489 bytes (1.2 MB)
+downloaded 1.2 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/caTools_1.17.1.2.zip'
+Content type 'application/zip' length 331024 bytes (323 KB)
+downloaded 323 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/TSP_1.1-7.zip'
+Content type 'application/zip' length 842670 bytes (822 KB)
+downloaded 822 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/qap_0.1-1.zip'
+Content type 'application/zip' length 537793 bytes (525 KB)
+downloaded 525 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/gclus_1.3.2.zip'
+Content type 'application/zip' length 416511 bytes (406 KB)
+downloaded 406 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/dendextend_1.12.0.zip'
+Content type 'application/zip' length 2111074 bytes (2.0 MB)
+downloaded 2.0 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/colorspace_1.4-1.zip'
+Content type 'application/zip' length 2550433 bytes (2.4 MB)
+downloaded 2.4 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/gplots_3.0.1.1.zip'
+Content type 'application/zip' length 660074 bytes (644 KB)
+downloaded 644 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/registry_0.5-1.zip'
+Content type 'application/zip' length 197133 bytes (192 KB)
+downloaded 192 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/seriation_1.2-8.zip'
+Content type 'application/zip' length 1223804 bytes (1.2 MB)
+downloaded 1.2 MB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/corrgram_1.13.zip'
+Content type 'application/zip' length 322418 bytes (314 KB)
+downloaded 314 KB
+
+package ‘plyr’ successfully unpacked and MD5 sums checked
+package ‘labeling’ successfully unpacked and MD5 sums checked
+package ‘munsell’ successfully unpacked and MD5 sums checked
+package ‘RColorBrewer’ successfully unpacked and MD5 sums checked
+package ‘iterators’ successfully unpacked and MD5 sums checked
+package ‘gtable’ successfully unpacked and MD5 sums checked
+package ‘lazyeval’ successfully unpacked and MD5 sums checked
+package ‘reshape2’ successfully unpacked and MD5 sums checked
+package ‘scales’ successfully unpacked and MD5 sums checked
+package ‘viridisLite’ successfully unpacked and MD5 sums checked
+package ‘withr’ successfully unpacked and MD5 sums checked
+package ‘gridExtra’ successfully unpacked and MD5 sums checked
+package ‘bitops’ successfully unpacked and MD5 sums checked
+package ‘foreach’ successfully unpacked and MD5 sums checked
+package ‘ggplot2’ successfully unpacked and MD5 sums checked
+package ‘viridis’ successfully unpacked and MD5 sums checked
+package ‘gtools’ successfully unpacked and MD5 sums checked
+package ‘gdata’ successfully unpacked and MD5 sums checked
+package ‘caTools’ successfully unpacked and MD5 sums checked
+package ‘TSP’ successfully unpacked and MD5 sums checked
+package ‘qap’ successfully unpacked and MD5 sums checked
+package ‘gclus’ successfully unpacked and MD5 sums checked
+package ‘dendextend’ successfully unpacked and MD5 sums checked
+package ‘colorspace’ successfully unpacked and MD5 sums checked
+package ‘gplots’ successfully unpacked and MD5 sums checked
+package ‘registry’ successfully unpacked and MD5 sums checked
+package ‘seriation’ successfully unpacked and MD5 sums checked
+package ‘corrgram’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\52473\AppData\Local\Temp\RtmpoBP5Hb\downloaded_packages
+> library(corrgram)
+Registered S3 method overwritten by 'seriation':
+  method         from 
+  reorder.hclust gclus
+> 
+> library(psych)
+> cor(datos[,1:6])
+                google_adwords   facebook   twitter marketing_total  revenues employees
+google_adwords      1.00000000 0.07643216 0.0989750       0.9473566 0.7662461 0.6610312
+facebook            0.07643216 1.00000000 0.3543410       0.3102232 0.5778213 0.4101966
+twitter             0.09897500 0.35434096 1.0000000       0.3758691 0.2696854 0.2290618
+marketing_total     0.94735659 0.31022316 0.3758691       1.0000000 0.8530354 0.7210171
+revenues            0.76624608 0.57782131 0.2696854       0.8530354 1.0000000 0.7656857
+employees           0.66103123 0.41019661 0.2290618       0.7210171 0.7656857 1.0000000
+> library(psych)
+> corrgram(datos[,1;6],order=FALSE,lower.panel=panel.conf,upper.panel=panel.ellipse,diag.panel=panel.minmax,text.panel=panel.txt)
+Error: unexpected ';' in "corrgram(datos[,1;"
+> summary(datos)
+ google_adwords      facebook        twitter       marketing_total     revenues       employees      pop_density
+ Min.   : 23.65   Min.   : 8.00   Min.   :  5.89   Min.   : 53.65   Min.   :30.45   Min.   : 3.000   Low   :68  
+ 1st Qu.: 97.25   1st Qu.:19.37   1st Qu.: 20.94   1st Qu.:158.41   1st Qu.:40.33   1st Qu.: 6.000   Medium:52  
+ Median :169.47   Median :33.66   Median : 34.59   Median :245.56   Median :43.99   Median : 8.000   High  :52  
+ Mean   :169.87   Mean   :33.87   Mean   : 38.98   Mean   :242.72   Mean   :44.61   Mean   : 7.866              
+ 3rd Qu.:243.10   3rd Qu.:47.80   3rd Qu.: 52.94   3rd Qu.:322.62   3rd Qu.:48.61   3rd Qu.:10.000              
+ Max.   :321.00   Max.   :62.17   Max.   :122.19   Max.   :481.00   Max.   :58.38   Max.   :12.000              
+> datos$employees <- NULL
+> datos$pop_density<-NULL
+> summary(datos)
+ google_adwords      facebook        twitter       marketing_total     revenues    
+ Min.   : 23.65   Min.   : 8.00   Min.   :  5.89   Min.   : 53.65   Min.   :30.45  
+ 1st Qu.: 97.25   1st Qu.:19.37   1st Qu.: 20.94   1st Qu.:158.41   1st Qu.:40.33  
+ Median :169.47   Median :33.66   Median : 34.59   Median :245.56   Median :43.99  
+ Mean   :169.87   Mean   :33.87   Mean   : 38.98   Mean   :242.72   Mean   :44.61  
+ 3rd Qu.:243.10   3rd Qu.:47.80   3rd Qu.: 52.94   3rd Qu.:322.62   3rd Qu.:48.61  
+ Max.   :321.00   Max.   :62.17   Max.   :122.19   Max.   :481.00   Max.   :58.38  
+> pairs(datos)
+> plot(datos$marketing_total,datos$revenues)
+> plot(datos$revenues,datos$marketing_total)
+> plot(datos$marketing_total,datos$revenues)
+> fivenum(datos$marketing_total)
+[1]  53.650 158.140 245.565 322.880 481.000
+> head(datto)
+Error in head(datto) : object 'datto' not found
+> head(datos$marketing_total)
+[1] 165.98 171.70 294.83 183.18 149.53  62.07
+> ?lm
+> modelo <- lm(revenues ~ marketing_total,data=datos)
+> summary(modelo)
+
+Call:
+lm(formula = revenues ~ marketing_total, data = datos)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.6197 -1.8963 -0.0006  2.1705  9.3689 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(>|t|)    
+(Intercept)     32.006696   0.635590   50.36   <2e-16 ***
+marketing_total  0.051929   0.002437   21.31   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 3.054 on 170 degrees of freedom
+Multiple R-squared:  0.7277,	Adjusted R-squared:  0.7261 
+F-statistic: 454.2 on 1 and 170 DF,  p-value: < 2.2e-16
+
+> modelo
+
+Call:
+lm(formula = revenues ~ marketing_total, data = datos)
+
+Coefficients:
+    (Intercept)  marketing_total  
+       32.00670          0.05193  
+
+> library(dplyr)
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+> select(datos$marketing_total) %>% filter(marketing_total > 430)
+Error in UseMethod("select_") : 
+  no applicable method for 'select_' applied to an object of class "c('double', 'numeric')"
+> select(datos,marketing_total) %>% filter(marketing_total > 430)
+  marketing_total
+1          481.00
+2          435.49
+3          440.94
+> prueba <- data.frame(marketing_total =481.0)
+> predict.lm(modelo,prueba ,interval = "predict")
+       fit      lwr      upr
+1 56.98454 50.83031 63.13877
+> select(datos,marketing_total,revenues) %>% filter(marketing_total == 430)
+[1] marketing_total revenues       
+<0 rows> (or 0-length row.names)
+> select(datos,marketing_total,revenues) %>% filter(marketing_total == 481)
+  marketing_total revenues
+1             481     56.1
+> prueba <- data.frame(marketing_total =450.0)
+> predict.lm(modelo,prueba ,interval = "predict")
+       fit      lwr      upr
+1 55.37474 49.24653 61.50295
+> pairs(datos)
+> modelo <- lm(facebook ~ google_adwords,data=datos)
+> modelo
+
+Call:
+lm(formula = facebook ~ google_adwords, data = datos)
+
+Coefficients:
+   (Intercept)  google_adwords  
+      31.60314         0.01334  
+
+> summary(datos$google_adwords)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  23.65   97.25  169.47  169.87  243.10  321.00 
+> select(datos,google_adwords,facebook) %>% filter(google_adwords == 23.65)
+  google_adwords facebook
+1          23.65    18.55
+> prueba <- data.frame(google_adwords =23.65)
+> predict.lm(modelo,prueba ,interval = "predict")
+      fit      lwr      upr
+1 31.9187 1.443272 62.39412
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

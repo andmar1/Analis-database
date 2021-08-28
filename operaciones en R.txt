@@ -1,0 +1,17 @@
+datos <- read.csv("C:\\Lenguaje R\\data\\Ch1_bike_sharing_data.csv")
+datos <- select(datos,season,registered,casual)
+head(datos)
+
+datos <- mutate(datos, vr=registered*0.5 , vc=casual*5)
+head(datos)
+
+datos <- group_by(datos, season)
+head(datos)
+
+datos <- sumarise(datos, sum(registered), sum(casual), sum(vr), sum(vc))
+head(datos)
+
+datos <- mutate(datos, total='sum(vr)'+'sum(vc)')
+head(datos)
+
+write.csv(datos,"reporte.csv",row.names=FALSE)

@@ -1,0 +1,6 @@
+resumen por temporada tanto de clientes casales y registrados 
+
+primavera 1
+verano 2
+otoño 3
+invierno 4
