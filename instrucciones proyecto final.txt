@@ -1,0 +1,931 @@
+R version 3.6.1 (2019-07-05) -- "Action of the Toes"
+Copyright (C) 2019 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(readxl)
+> Hospedaje <- read_excel("C:/Lenguaje R/data/Hospedaje.xlsx")
+Warning message:
+In read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet,  :
+  Expecting numeric in D1162 / R1162C4: got 'MÃ¡s'
+> View(Hospedaje)
+> ssummary(Hospedaje)
+Error in ssummary(Hospedaje) : could not find function "ssummary"
+> summary(Hospedaje)
+    id_host              lat             long           capacity          price       
+ Min.   :   42817   Min.   :20.91   Min.   :-101.3   Min.   : 1.000   Min.   : 152.0  
+ 1st Qu.:21091070   1st Qu.:21.01   1st Qu.:-101.3   1st Qu.: 2.000   1st Qu.: 430.0  
+ Median :27659984   Median :21.02   Median :-101.3   Median : 4.000   Median : 661.4  
+ Mean   :25629168   Mean   :21.01   Mean   :-101.3   Mean   : 4.084   Mean   : 882.1  
+ 3rd Qu.:32741681   3rd Qu.:21.02   3rd Qu.:-101.3   3rd Qu.: 5.000   3rd Qu.:1075.1  
+ Max.   :37179624   Max.   :21.09   Max.   :-101.2   Max.   :16.000   Max.   :7878.0  
+                                                     NA's   :1                        
+> View(Hospedaje)
+> library(readxl)
+> Hospedaje <- read_excel("C:/Lenguaje R/data/Hospedaje.xlsx")
+Warning message:
+In read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet,  :
+  Expecting numeric in D1162 / R1162C4: got 'MÃ¡s'
+> View(Hospedaje)
+> summary(Hospedaje)
+    id_host              lat             long           capacity          price       
+ Min.   :   42817   Min.   :20.91   Min.   :-101.3   Min.   : 1.000   Min.   : 152.0  
+ 1st Qu.:21091070   1st Qu.:21.01   1st Qu.:-101.3   1st Qu.: 2.000   1st Qu.: 430.0  
+ Median :27659984   Median :21.02   Median :-101.3   Median : 4.000   Median : 661.4  
+ Mean   :25629168   Mean   :21.01   Mean   :-101.3   Mean   : 4.084   Mean   : 882.1  
+ 3rd Qu.:32741681   3rd Qu.:21.02   3rd Qu.:-101.3   3rd Qu.: 5.000   3rd Qu.:1075.1  
+ Max.   :37179624   Max.   :21.09   Max.   :-101.2   Max.   :16.000   Max.   :7878.0  
+                                                     NA's   :1                        
+> str(Hospedaje)
+Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1189 obs. of  5 variables:
+ $ id_host : num  10022137 10022171 10022200 10023033 102877 ...
+ $ lat     : num  21 21 21 21 21 ...
+ $ long    : num  -101 -101 -101 -101 -101 ...
+ $ capacity: num  2 3 4 2 4 7 4 4 6 2 ...
+ $ price   : num  490 453 671 451 2118 ...
+> cor(Hospedaje[,1:6])
+Error: Positive column indexes in `[` must match number of columns:
+* `.data` has 5 columns
+* Position 6 equals 6
+Call `rlang::last_error()` to see a backtrace
+> cor(Hospedaje[,1:3])
+            id_host         lat        long
+id_host  1.00000000 -0.08292466 -0.04766128
+lat     -0.08292466  1.00000000  0.46514567
+long    -0.04766128  0.46514567  1.00000000
+> cor(Hospedaje[,2:3])
+           lat      long
+lat  1.0000000 0.4651457
+long 0.4651457 1.0000000
+
+hospedaje <- read_excel(".\\Hospedaje.xlsx",stringsAsFactors=TRUE)
+
+> Hospedaje$capacity <- as.numeric(Hospedaje$capacity)
+> mean(Hospedaje$price)
+[1] 882.1473
+> mean(Hospedaje$capacity)
+[1] NA
+> library(readxl)
+> Hospedaje <- read_excel("Hospedaje.xlsx")
+> View(Hospedaje)
+> str_detect(Hospedaje,"NA")
+Error in str_detect(Hospedaje, "NA") : 
+  could not find function "str_detect"
+  
+sd(Hospedaje$id_host)
+[1] 8513288
+>  sd(Hospedaje$lat)
+[1] 0.01673623
+>  sd(Hospedaje$long)
+[1] 0.01415467
+>  sd(Hospedaje$capacity)
+[1] 2.845673
+>  sd(Hospedaje$price)
+[1] 738.39
+> 
+> var(Hospedaje$id_host)
+[1] 7.247607e+13
+> var(Hospedaje$id_host,Hospedaje$long)
+[1] -5743.316
+> var(Hospedaje$lat)
+[1] 0.0002801015
+> var(Hospedaje$long)
+[1] 0.0002003546
+> var(Hospedaje$capacity)
+[1] 8.097853
+> var(Hospedaje$price)
+[1] 545219.9
+
+
+> Hospedaje <- read.csv("\\Hospedaje.csv",stringsAsFactors = TRUE)
+Error in file(file, "rt") : cannot open the connection
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file '\Hospedaje.csv': No such file or directory
+> setwd("C:\\Lenguaje R\\data")
+> getwd()
+[1] "C:/Lenguaje R/data"
+> Hospedaje <- read.csv(".\\Hospedaje.csv",stringsAsFactors = TRUE)
+Error in file(file, "rt") : cannot open the connection
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file '.\Hospedaje.csv': No such file or directory
+> Hospedaje <- read_excel(".\\Hospedaje.xlsx",stringAsFactors =TRUE)
+Error in read_excel(".\\Hospedaje.xlsx", stringAsFactors = TRUE) : 
+  could not find function "read_excel"
+> Hospedaje <- read.excel(".\\Hospedaje.xlsx",stringAsFactors =TRUE)
+Error in read.excel(".\\Hospedaje.xlsx", stringAsFactors = TRUE) : 
+  could not find function "read.excel"
+> library(readr)
+> Hospedaje <- read_csv("Hospedaje.xlsx",stringAsFactor=TRUE)
+Error in read_csv("Hospedaje.xlsx", stringAsFactor = TRUE) : 
+  unused argument (stringAsFactor = TRUE)
+> View(Hospedaje)
+Error in View : object 'Hospedaje' not found
+> Hospedaje <- read.csv("\\Hospedaje.csv",stringsAsFactors = TRUE)
+Error in file(file, "rt") : cannot open the connection
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file '\Hospedaje.csv': No such file or directory
+> library(readxl)
+> Hospedaje <- read_excel("Hospedaje.xlsx")
+Warning message:
+In read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet,  :
+  Expecting numeric in D1162 / R1162C4: got 'mÃ¡s'
+> View(Hospedaje)
+> Hospedaje <- read.csv("\\Hospedaje.csv",stringsAsFactors = TRUE)
+Error in file(file, "rt") : cannot open the connection
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file '\Hospedaje.csv': No such file or directory
+> summary(Hospedaje)
+    id_host              lat             long           capacity     
+ Min.   :   42817   Min.   :20.91   Min.   :-101.3   Min.   : 1.000  
+ 1st Qu.:21091070   1st Qu.:21.01   1st Qu.:-101.3   1st Qu.: 2.000  
+ Median :27659984   Median :21.02   Median :-101.3   Median : 4.000  
+ Mean   :25629168   Mean   :21.01   Mean   :-101.3   Mean   : 4.084  
+ 3rd Qu.:32741681   3rd Qu.:21.02   3rd Qu.:-101.3   3rd Qu.: 5.000  
+ Max.   :37179624   Max.   :21.09   Max.   :-101.2   Max.   :16.000  
+                                                     NA's   :1       
+     price       
+ Min.   : 152.0  
+ 1st Qu.: 430.0  
+ Median : 661.4  
+ Mean   : 882.1  
+ 3rd Qu.:1075.1  
+ Max.   :7878.0  
+                 
+> hospedaje <- read_excel(".\\Hospedaje.xlsx",stringAsFactor=TRUE)
+Error in read_excel(".\\Hospedaje.xlsx", stringAsFactor = TRUE) : 
+  unused argument (stringAsFactor = TRUE)
+> hospedaje <- read_excel(".\\Hospedaje.xlsx",stringAsFactors=TRUE)
+Error in read_excel(".\\Hospedaje.xlsx", stringAsFactors = TRUE) : 
+  unused argument (stringAsFactors = TRUE)
+> hospedaje <- read_excel(".\\Hospedaje.xlsx",stringsAsFactors=TRUE)
+Error in read_excel(".\\Hospedaje.xlsx", stringsAsFactors = TRUE) : 
+  unused argument (stringsAsFactors = TRUE)
+> hospedaje <- read_excel(".\\Hospedaje.xlsx",stringsAsFactors=TRUE)
+Error in read_excel(".\\Hospedaje.xlsx", stringsAsFactors = TRUE) : 
+  unused argument (stringsAsFactors = TRUE)
+> 
+> 
+> 
+> Hospedaje$capacity <- as.numeric(Hospedaje$capacity)
+> str_detect(Hospedaje,"NA")
+Error in str_detect(Hospedaje, "NA") : 
+  could not find function "str_detect"
+> Hospedaje$capacity <- as.numeric(Hospedaje$capacity)
+> mean(Hospedaje$price)
+[1] 882.1473
+> mean(Hospedaje$capacity)
+[1] NA
+> library(readxl)
+> Hospedaje <- read_excel("Hospedaje.xlsx")
+> View(Hospedaje)
+> str_detect(Hospedaje,"NA")
+Error in str_detect(Hospedaje, "NA") : 
+  could not find function "str_detect"
+>  sd(Hospedaje$id_host)
+[1] 8513288
+>  sd(Hospedaje$lat)
+[1] 0.01673623
+>  sd(Hospedaje$long)
+[1] 0.01415467
+>  sd(Hospedaje$capacity)
+[1] 2.845673
+>  sd(Hospedaje$price)
+[1] 738.39
+> 
+> var(Hospedaje$id_host)
+[1] 7.247607e+13
+> var(Hospedaje$id_host,Hospedaje$long)
+[1] -5743.316
+> var(Hospedaje$lat)
+[1] 0.0002801015
+> var(Hospedaje$long)
+[1] 0.0002003546
+> var(Hospedaje$capacity)
+[1] 8.097853
+> var(Hospedaje$price)
+[1] 545219.9
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> fivenum(Hospedaje)
+Error: Must use a vector in `[`, not an object of class matrix.
+Call `rlang::last_error()` to see a backtrace
+> fivenum(Hospedaje$id_host)
+[1]    42817 21091070 27659984 32741681 37179624
+> fivenum(Hospedaje$price)
+[1]  152.0000  430.0000  661.4286 1075.1250 7878.0000
+> fivenum(Hospedaje$capacity,Hospedaje$price)
+[1]  0  2  4  5 16
+> summary(Hospedaje)
+    id_host              lat             long           capacity          price       
+ Min.   :   42817   Min.   :20.91   Min.   :-101.3   Min.   : 0.000   Min.   : 152.0  
+ 1st Qu.:21091070   1st Qu.:21.01   1st Qu.:-101.3   1st Qu.: 2.000   1st Qu.: 430.0  
+ Median :27659984   Median :21.02   Median :-101.3   Median : 4.000   Median : 661.4  
+ Mean   :25629168   Mean   :21.01   Mean   :-101.3   Mean   : 4.081   Mean   : 882.1  
+ 3rd Qu.:32741681   3rd Qu.:21.02   3rd Qu.:-101.3   3rd Qu.: 5.000   3rd Qu.:1075.1  
+ Max.   :37179624   Max.   :21.09   Max.   :-101.2   Max.   :16.000   Max.   :7878.0  
+> sd(Hospedaje$lat,Hospedaje$long)
+[1] 0.01673623
+Warning message:
+In if (na.rm) "na.or.complete" else "everything" :
+  the condition has length > 1 and only the first element will be used
+> pie(table(Hospedaje))
+Error in table(Hospedaje) : attempt to make a table with >= 2^31 elements
+> ?pie
+> Hospedaje("anscombe")
+Error in Hospedaje("anscombe") : could not find function "Hospedaje"
+> anscombe
+   x1 x2 x3 x4    y1   y2    y3    y4
+1  10 10 10  8  8.04 9.14  7.46  6.58
+2   8  8  8  8  6.95 8.14  6.77  5.76
+3  13 13 13  8  7.58 8.74 12.74  7.71
+4   9  9  9  8  8.81 8.77  7.11  8.84
+5  11 11 11  8  8.33 9.26  7.81  8.47
+6  14 14 14  8  9.96 8.10  8.84  7.04
+7   6  6  6  8  7.24 6.13  6.08  5.25
+8   4  4  4 19  4.26 3.10  5.39 12.50
+9  12 12 12  8 10.84 9.13  8.15  5.56
+10  7  7  7  8  4.82 7.26  6.42  7.91
+11  5  5  5  8  5.68 4.74  5.73  6.89
+> sapply(anscombe,mean)
+      x1       x2       x3       x4       y1       y2       y3       y4 
+9.000000 9.000000 9.000000 9.000000 7.500909 7.500909 7.500000 7.500909 
+> sapply(anscombe,Hospedaje)
+Error in get(as.character(FUN), mode = "function", envir = envir) : 
+  object 'Hospedaje' of mode 'function' was not found
+> sapply(anscombe,lat)
+Error in match.fun(FUN) : object 'lat' not found
+> sapply(anscombe,var)
+       x1        x2        x3        x4        y1        y2        y3        y4 
+11.000000 11.000000 11.000000 11.000000  4.127269  4.127629  4.122620  4.123249 
+> sapply(anscombe,sd)
+      x1       x2       x3       x4       y1       y2       y3       y4 
+3.316625 3.316625 3.316625 3.316625 2.031568 2.031657 2.030424 2.030579 
+> plot(Hospedaje$lat,Hospedaje$long)
+> plot(Hospedaje$lat,Hospedaje$long,Hospedaje$price)
+Error in plot.xy(xy, type, ...) : tipo de gráfico inválido
+> plot(Hospedaje$lat,Hospedaje$long)
+> plot(Hospedaje$lat)
+> plot(Hospedaje$long)
+> plot(Hospedaje$capacity)
+> plot(Hospedaje$price)
+> plot(Hospedaje$lat,Hospedaje$lat)
+> plot(Hospedaje$lat,Hospedaje$long)
+> plot(Hospedaje$capacity,Hospedaje$price)
+> plot(Hospedaje$capacity,Hospedaje$id_host)
+> plot(Hosp)
+Error in plot(Hosp) : object 'Hosp' not found
+> plot(Hospedaje$id_host,Hospedaje$price)
+> hist.default(Hospedaje)
+Error in hist.default(Hospedaje) : 'x' must be numeric
+> hist.default(Hospedaje$id_host)
+> hist(Hospedaje$id_host)
+> hist.default(Hospedaje$id_host)
+> hist(Hospedaje$id_host)
+> hist(Hospedaje$lat)
+> hist(Hospedaje$long)
+> hist(Hospedaje$capacity)
+> hist(Hospedaje$price)
+> boxplot(Hospedaje$lat)
+> boxplot(Hospedaje$long)
+> boxplot(Hospedaje$price)
+> max(Hospedaje$price)
+[1] 7878
+> mean(Hospedaje$price)
+[1] 882.1473
+> hist(Hospedaje$lat,Hospedaje$long)
+Error in hist.default(Hospedaje$lat, Hospedaje$long) : 
+  some 'x' not counted; maybe 'breaks' do not span range of 'x'
+> summary(Hospedaje)
+    id_host              lat             long           capacity          price       
+ Min.   :   42817   Min.   :20.91   Min.   :-101.3   Min.   : 0.000   Min.   : 152.0  
+ 1st Qu.:21091070   1st Qu.:21.01   1st Qu.:-101.3   1st Qu.: 2.000   1st Qu.: 430.0  
+ Median :27659984   Median :21.02   Median :-101.3   Median : 4.000   Median : 661.4  
+ Mean   :25629168   Mean   :21.01   Mean   :-101.3   Mean   : 4.081   Mean   : 882.1  
+ 3rd Qu.:32741681   3rd Qu.:21.02   3rd Qu.:-101.3   3rd Qu.: 5.000   3rd Qu.:1075.1  
+ Max.   :37179624   Max.   :21.09   Max.   :-101.2   Max.   :16.000   Max.   :7878.0  
+> boxplot(Hospedaje$capacity)
+> boxplot(Hospedaje$price, ylab="precios",col ="blue")
+> table(Hospedaje$lat,Hospedaje$long)
+          
+           -101.34321 -101.34182 -101.33858 -101.3373 -101.33718 -101.32489 -101.31748 -101.31452 -101.3141 -101.31329 -101.30332
+  20.9105           0          0          0         0          0          0          0          0         0          0          0
+          
+           -101.30088 -101.30061 -101.3 -101.29877 -101.298 -101.29541 -101.29537 -101.295 -101.29437 -101.29368 -101.293
+  20.9105           0          0      0          0        0          0          0        0          0          0        0
+          
+           -101.29284 -101.29273 -101.29255 -101.29222 -101.29209 -101.29188 -101.29174 -101.29067 -101.2892 -101.28917
+  20.9105           0          0          0          0          0          0          0          0         0          0
+          
+           -101.28907 -101.28899 -101.28888 -101.28868 -101.28852 -101.28848 -101.2884 -101.28835 -101.28828 -101.2882 -101.28806
+  20.9105           0          0          0          0          0          0         0          0          0         0          0
+          
+           -101.28803 -101.288 -101.28794 -101.28784 -101.28783 -101.28768 -101.28754 -101.287 -101.28696 -101.28671 -101.28646
+  20.9105           0        0          0          0          0          0          0        0          0          0          0
+          
+           -101.28645 -101.28643 -101.28636 -101.28629 -101.28614 -101.28605 -101.286 -101.28589 -101.2856 -101.2855 -101.28533
+  20.9105           0          0          0          0          0          0        0          0         0         0          0
+          
+           -101.28505 -101.28484 -101.28479 -101.28466 -101.28465 -101.28448 -101.2844 -101.28414 -101.28387 -101.28374 -101.2837
+  20.9105           0          0          0          0          0          0         0          0          0          0         0
+          
+           -101.28343 -101.28338 -101.28322 -101.28302 -101.283 -101.28241 -101.28235 -101.28233 -101.28222 -101.28219 -101.28216
+  20.9105           0          0          0          0        0          0          0          0          0          0          0
+          
+           -101.28215 -101.28209 -101.282 -101.28198 -101.28175 -101.28164 -101.28151 -101.28133 -101.2813 -101.28106 -101.28103
+  20.9105           0          0        0          0          0          0          0          0         0          0          0
+          
+           -101.28097 -101.2808 -101.28078 -101.2807 -101.28069 -101.28059 -101.28007 -101.28 -101.27989 -101.27974 -101.27962
+  20.9105           0         0          0         0          0          0          0       0          0          0          0
+          
+           -101.2796 -101.27937 -101.27932 -101.27924 -101.27849 -101.27834 -101.27831 -101.27813 -101.27806 -101.278 -101.27794
+  20.9105          0          0          0          0          0          0          0          0          0        0          0
+          
+           -101.27787 -101.27736 -101.27701 -101.2769 -101.27634 -101.27626 -101.27624 -101.276 -101.27591 -101.27539 -101.2753
+  20.9105           0          0          0         0          0          0          0        0          0          0         0
+          
+           -101.27511 -101.27501 -101.27483 -101.27466 -101.27433 -101.274 -101.2739 -101.27359 -101.27314 -101.273 -101.27285
+  20.9105           0          0          0          0          0        0         0          0          0        0          0
+          
+           -101.27283 -101.27242 -101.27237 -101.27222 -101.27221 -101.27206 -101.272 -101.27183 -101.27182 -101.27179 -101.27167
+  20.9105           0          0          0          0          0          0        0          0          0          0          0
+          
+           -101.27149 -101.27141 -101.27137 -101.27132 -101.27124 -101.27109 -101.271 -101.27055 -101.27028 -101.26998 -101.26973
+  20.9105           0          0          0          0          0          0        0          0          0          0          0
+          
+           -101.26965 -101.26947 -101.26942 -101.26919 -101.26868 -101.26863 -101.26794 -101.26775 -101.26764 -101.26752
+  20.9105           0          0          0          0          0          0          0          0          0          0
+          
+           -101.26722 -101.267 -101.26656 -101.26646 -101.26625 -101.26623 -101.266 -101.26598 -101.26596 -101.26579 -101.26549
+  20.9105           0        0          0          0          0          0        0          0          0          0          0
+          
+           -101.26543 -101.26538 -101.26533 -101.26512 -101.265 -101.26488 -101.26471 -101.26464 -101.26461 -101.26457 -101.26452
+  20.9105           0          0          0          0        0          0          0          0          0          0          0
+          
+           -101.26451 -101.2645 -101.26441 -101.26424 -101.2642 -101.26418 -101.26416 -101.26414 -101.26405 -101.26404 -101.26394
+  20.9105           0         0          0          0         0          0          0          0          0          0          0
+          
+           -101.2639 -101.26382 -101.2638 -101.26376 -101.26363 -101.26357 -101.26356 -101.26348 -101.26336 -101.26326 -101.26318
+  20.9105          0          0         0          0          0          0          0          0          0          0          0
+          
+           -101.26313 -101.263 -101.26298 -101.26295 -101.26288 -101.26287 -101.26282 -101.26269 -101.26268 -101.26265 -101.26257
+  20.9105           0        0          0          0          0          0          0          0          0          0          0
+          
+           -101.26253 -101.2625 -101.26246 -101.26241 -101.26239 -101.26238 -101.26228 -101.26227 -101.26215 -101.26207
+  20.9105           0         0          0          0          0          0          0          0          0          0
+          
+           -101.26206 -101.26202 -101.262 -101.26199 -101.26189 -101.26188 -101.26184 -101.26183 -101.2618 -101.26176 -101.26171
+  20.9105           0          0        0          0          0          0          0          0         0          0          0
+          
+           -101.26158 -101.2615 -101.26144 -101.26143 -101.2614 -101.26134 -101.26132 -101.26129 -101.26128 -101.26125 -101.26124
+  20.9105           0         0          0          0         0          0          0          0          0          0          0
+          
+           -101.26122 -101.26115 -101.26113 -101.26105 -101.261 -101.26097 -101.26093 -101.26092 -101.26085 -101.26076 -101.26073
+  20.9105           0          0          0          0        0          0          0          0          0          0          0
+          
+           -101.26066 -101.26065 -101.26063 -101.26061 -101.26057 -101.26056 -101.26052 -101.2604 -101.26039 -101.26036
+  20.9105           0          0          0          0          0          0          0         0          0          0
+          
+           -101.26032 -101.26028 -101.26021 -101.26016 -101.26014 -101.26012 -101.26011 -101.26007 -101.26006 -101.26003
+  20.9105           0          0          0          0          0          0          0          0          0          0
+          
+           -101.26002 -101.26 -101.25999 -101.25996 -101.25994 -101.25993 -101.25991 -101.2599 -101.25987 -101.25985 -101.25983
+  20.9105           0       0          0          0          0          0          0         0          0          0          0
+          
+           -101.2598 -101.25979 -101.25974 -101.25973 -101.25963 -101.25962 -101.25959 -101.25958 -101.25955 -101.25954
+  20.9105          0          0          0          0          0          0          0          0          0          0
+          
+           -101.25949 -101.25947 -101.25946 -101.25944 -101.25937 -101.25935 -101.2593 -101.25929 -101.25925 -101.25924
+  20.9105           0          0          0          0          0          0         0          0          0          0
+          
+           -101.25923 -101.2592 -101.25918 -101.25913 -101.25912 -101.25908 -101.25906 -101.25901 -101.259 -101.25895 -101.25894
+  20.9105           0         0          0          0          0          0          0          0        0          0          0
+          
+           -101.25892 -101.25886 -101.25881 -101.25878 -101.25877 -101.25871 -101.25869 -101.2586 -101.25857 -101.25855
+  20.9105           0          0          0          0          0          0          0         0          0          0
+          
+           -101.25853 -101.25846 -101.25844 -101.2584 -101.25835 -101.25834 -101.25831 -101.2583 -101.25827 -101.25826 -101.2582
+  20.9105           0          0          0         0          0          0          0         0          0          0         0
+          
+           -101.25818 -101.25817 -101.25815 -101.25814 -101.25811 -101.25802 -101.258 -101.25794 -101.25793 -101.25788 -101.25787
+  20.9105           0          0          0          0          0          0        0          0          0          0          0
+          
+           -101.25778 -101.25774 -101.25771 -101.25764 -101.25763 -101.25761 -101.25753 -101.25749 -101.25748 -101.25743
+  20.9105           0          0          0          0          0          0          0          0          0          0
+          
+           -101.25742 -101.25737 -101.25734 -101.25733 -101.25731 -101.2573 -101.25727 -101.25721 -101.2572 -101.25719 -101.25706
+  20.9105           0          0          0          0          0         0          0          0         0          0          0
+          
+           -101.25704 -101.25701 -101.257 -101.25695 -101.25694 -101.25693 -101.25692 -101.2569 -101.25689 -101.25684 -101.2568
+  20.9105           0          0        0          0          0          0          0         0          0          0         0
+          
+           -101.25673 -101.25669 -101.25666 -101.2566 -101.25655 -101.25649 -101.25645 -101.25643 -101.25642 -101.25635
+  20.9105           0          0          0         0          0          0          0          0          0          0
+          
+           -101.25626 -101.25624 -101.25619 -101.25617 -101.25616 -101.25612 -101.25607 -101.25605 -101.25601 -101.256 -101.25599
+  20.9105           0          0          0          0          0          0          0          0          0        0          0
+          
+           -101.25597 -101.2559 -101.25588 -101.25585 -101.25584 -101.25581 -101.25576 -101.25575 -101.25574 -101.2557 -101.25568
+  20.9105           0         0          0          0          0          0          0          0          0         0          0
+          
+           -101.25567 -101.25566 -101.25561 -101.25558 -101.25546 -101.25539 -101.25535 -101.25531 -101.2553 -101.25529
+  20.9105           0          0          0          1          0          0          0          0         0          0
+          
+           -101.25527 -101.25523 -101.25521 -101.25519 -101.25518 -101.25515 -101.2551 -101.25506 -101.25503 -101.255 -101.25499
+  20.9105           0          0          0          0          0          0         0          0          0        0          0
+          
+           -101.25491 -101.25489 -101.25484 -101.2548 -101.25479 -101.25475 -101.2547 -101.25467 -101.25464 -101.25439 -101.25436
+  20.9105           0          0          0         0          0          0         0          0          0          0          0
+          
+           -101.25435 -101.2542 -101.25418 -101.25417 -101.25416 -101.25415 -101.25414 -101.25407 -101.25402 -101.254 -101.25392
+  20.9105           0         0          0          0          0          0          0          0          0        0          0
+          
+           -101.25391 -101.25386 -101.25385 -101.25379 -101.25372 -101.25371 -101.2537 -101.25368 -101.25365 -101.25363
+  20.9105           0          0          0          0          0          0         0          0          0          0
+          
+           -101.25361 -101.2536 -101.25358 -101.25354 -101.25351 -101.25344 -101.2534 -101.25339 -101.25337 -101.2533 -101.25329
+  20.9105           0         0          0          0          0          0         0          0          0         0          0
+          
+           -101.25323 -101.25321 -101.2532 -101.25319 -101.25317 -101.25313 -101.25312 -101.25309 -101.25305 -101.253 -101.25296
+  20.9105           0          0         0          0          0          0          0          0          0        0          0
+          
+           -101.25294 -101.2529 -101.25289 -101.25286 -101.25285 -101.25284 -101.25283 -101.25273 -101.25272 -101.2527 -101.25268
+  20.9105           0         0          0          0          0          0          0          0          0         0          0
+          
+           -101.25267 -101.25265 -101.25264 -101.25262 -101.25257 -101.25253 -101.25251 -101.25247 -101.25245 -101.25244
+  20.9105           0          0          0          0          0          0          0          0          0          0
+          
+           -101.25243 -101.25242 -101.25241 -101.25239 -101.25238 -101.25237 -101.25234 -101.25227 -101.25226 -101.25225
+  20.9105           0          0          0          0          0          0          0          0          0          0
+          
+           -101.25223 -101.25222 -101.25221 -101.2522 -101.25217 -101.25212 -101.25209 -101.25205 -101.25203 -101.25201 -101.252
+  20.9105           0          0          0         0          0          0          0          0          0          0        0
+          
+           -101.25199 -101.25197 -101.25196 -101.25194 -101.25193 -101.25192 -101.25189 -101.25186 -101.25185 -101.25184
+  20.9105           0          0          0          0          0          0          0          0          0          0
+          
+           -101.25183 -101.25181 -101.2518 -101.25179 -101.25176 -101.25175 -101.25174 -101.25172 -101.25168 -101.25167
+  20.9105           0          0         0          0          0          0          0          0          0          0
+          
+           -101.25165 -101.25162 -101.25161 -101.25159 -101.25155 -101.25154 -101.25153 -101.25152 -101.25151 -101.2515
+  20.9105           0          0          0          0          0          0          0          0          0         0
+          
+           -101.25147 -101.25143 -101.25142 -101.25137 -101.25136 -101.25135 -101.25134 -101.25129 -101.25126 -101.2512
+  20.9105           0          0          0          0          0          0          0          0          0         0
+          
+           -101.25119 -101.25118 -101.25111 -101.2511 -101.25108 -101.25107 -101.25103 -101.25102 -101.25101 -101.251 -101.25098
+  20.9105           0          0          0         0          0          0          0          0          0        0          0
+          
+           -101.25097 -101.25096 -101.25093 -101.25092 -101.25087 -101.25086 -101.25084 -101.25081 -101.2508 -101.25079
+  20.9105           0          0          0          0          0          0          0          0         0          0
+          
+           -101.25077 -101.25076 -101.25075 -101.25074 -101.25071 -101.25068 -101.25067 -101.25064 -101.25062 -101.2506
+  20.9105           0          0          0          0          0          0          0          0          0         0
+          
+           -101.25059 -101.25058 -101.25057 -101.25056 -101.25055 -101.25054 -101.25051 -101.2505 -101.25049 -101.25047
+  20.9105           0          0          0          0          0          0          0         0          0          0
+          
+           -101.25046 -101.25045 -101.25037 -101.25033 -101.25031 -101.25028 -101.25027 -101.25023 -101.25022 -101.25021
+  20.9105           0          0          0          0          0          0          0          0          0          0
+          
+           -101.2502 -101.25019 -101.25017 -101.25015 -101.25013 -101.25012 -101.25011 -101.25008 -101.25007 -101.25004
+  20.9105          0          0          0          0          0          0          0          0          0          0
+          
+           -101.25002 -101.25 -101.24995 -101.24993 -101.24992 -101.2499 -101.24989 -101.24987 -101.24983 -101.24982 -101.24972
+  20.9105           0       0          0          0          0         0          0          0          0          0          0
+          
+           -101.24966 -101.24965 -101.24962 -101.24961 -101.24958 -101.24954 -101.24948 -101.24947 -101.24945 -101.24944
+  20.9105           0          0          0          0          0          0          0          0          0          0
+          
+           -101.2494 -101.24937 -101.24932 -101.24931 -101.24929 -101.24927 -101.24916 -101.24907 -101.24906 -101.24904
+  20.9105          0          0          0          0          0          0          0          0          0          0
+          
+           -101.24903 -101.249 -101.24898 -101.24897 -101.24895 -101.24888 -101.24887 -101.24885 -101.24884 -101.24883 -101.24882
+  20.9105           0        0          0          0          0          0          0          0          0          0          0
+          
+           -101.24874 -101.24867 -101.24865 -101.24864 -101.24861 -101.24859 -101.24856 -101.24855 -101.24853 -101.24852
+  20.9105           0          0          0          0          0          0          0          0          0          0
+          
+           -101.24849 -101.24844 -101.24843 -101.24842 -101.24841 -101.2484 -101.24828 -101.24823 -101.24816 -101.24812
+  20.9105           0          0          0          0          0         0          0          0          0          0
+          
+           -101.24811 -101.24809 -101.24808 -101.248 -101.24794 -101.24793 -101.24792 -101.24789 -101.24786 -101.24778 -101.24777
+  20.9105           0          0          0        0          0          0          0          0          0          0          0
+          
+           -101.24776 -101.24775 -101.24771 -101.2477 -101.24765 -101.24759 -101.24755 -101.24751 -101.24749 -101.24748
+  20.9105           0          0          0         0          0          0          0          0          0          0
+          
+           -101.24747 -101.24745 -101.24736 -101.24733 -101.24732 -101.24729 -101.24727 -101.24724 -101.2472 -101.24719
+  20.9105           0          0          0          0          0          0          0          0         0          0
+          
+           -101.24718 -101.24706 -101.24705 -101.24703 -101.24701 -101.247 -101.24698 -101.24697 -101.24694 -101.24693 -101.24685
+  20.9105           0          0          0          0          0        0          0          0          0          0          0
+          
+           -101.24681 -101.2468 -101.24676 -101.24674 -101.24671 -101.24668 -101.24654 -101.24642 -101.24641 -101.24638
+  20.9105           0         0          0          0          0          0          0          0          0          0
+          
+           -101.24634 -101.24632 -101.24629 -101.24624 -101.24616 -101.24613 -101.24611 -101.24603 -101.246 -101.24596 -101.2459
+  20.9105           0          0          0          0          0          0          0          0        0          0         0
+          
+           -101.24588 -101.24587 -101.24567 -101.24554 -101.24551 -101.24541 -101.24533 -101.24519 -101.24515 -101.24508
+  20.9105           0          0          0          0          0          0          0          0          0          0
+          
+           -101.24501 -101.245 -101.24495 -101.24485 -101.24479 -101.24478 -101.24469 -101.24468 -101.24462 -101.24461 -101.24456
+  20.9105           0        0          0          0          0          0          0          0          0          0          0
+          
+           -101.24453 -101.24451 -101.24444 -101.24436 -101.24428 -101.24423 -101.24421 -101.24419 -101.24414 -101.244 -101.24399
+  20.9105           0          0          0          0          0          0          0          0          0        0          0
+          
+           -101.24397 -101.24394 -101.24386 -101.24384 -101.24366 -101.24364 -101.24346 -101.24339 -101.24338 -101.2432
+  20.9105           0          0          0          0          0          0          0          0          0         0
+          
+           -101.24318 -101.24316 -101.24304 -101.243 -101.24295 -101.24259 -101.24247 -101.24245 -101.24238 -101.2422 -101.24219
+  20.9105           0          0          0        0          0          0          0          0          0         0          0
+          
+           -101.24214 -101.24206 -101.24201 -101.242 -101.24186 -101.24171 -101.24161 -101.24135 -101.24055 -101.24053 -101.23995
+  20.9105           0          0          0        0          0          0          0          0          0          0          0
+          
+           -101.23951 -101.23948 -101.2394 -101.23902 -101.239 -101.2388 -101.23795 -101.2379 -101.20187 -101.201 -101.20053
+  20.9105           0          0         0          0        0         0          0         0          0        0          0
+          
+           -101.16357
+  20.9105           0
+ [ reached getOption("max.print") -- omitted 869 rows ]
+> mosaicplot(Hospedaje)
+> mosaicplot(Hospedaje$price)
+> mosaicplot(Hospedaje$price,Hospedaje$capacity)
+> hist(Hospedaje$price)
+> mosaicplot(Hospedaje$price)
+> plot(Hospedaje$capacity,Hospedaje$price)
+> cor.test(Hospedaje[,5])
+Error in cor.test.default(Hospedaje[, 5]) : 
+  argument "y" is missing, with no default
+> cor.test(Hospedaje[,4])
+Error in cor.test.default(Hospedaje[, 4]) : 
+  argument "y" is missing, with no default
+> cor.test(Hospedaje[,1:5])
+Error in cor.test.default(Hospedaje[, 1:5]) : 
+  argument "y" is missing, with no default
+> cor.test(Hospedaje[,1:4])
+Error in cor.test.default(Hospedaje[, 1:4]) : 
+  argument "y" is missing, with no default
+> corr.test(Hospedaje[,1:5])
+Error in corr.test(Hospedaje[, 1:5]) : 
+  could not find function "corr.test"
+> corr.test(Hospedaje[,1:4])
+Error in corr.test(Hospedaje[, 1:4]) : 
+  could not find function "corr.test"
+> cor(Hospedaje$id_host)
+Error in cor(Hospedaje$id_host) : 
+  supply both 'x' and 'y' or a matrix-like 'x'
+> cor(Hospedaje$id_host,Hospedaje$lat)
+[1] -0.08292466
+> cor.test(Hospedaje)
+Error in cor.test.default(Hospedaje) : 
+  argument "y" is missing, with no default
+> cor.test(Hospedaje[1,6])
+Error: Positive column indexes in `[` must match number of columns:
+* `.data` has 5 columns
+* Position 1 equals 6
+Call `rlang::last_error()` to see a backtrace
+> cor(Hospedaje[,1:6])
+Error: Positive column indexes in `[` must match number of columns:
+* `.data` has 5 columns
+* Position 6 equals 6
+Call `rlang::last_error()` to see a backtrace
+> cor(Hospedaje[,1:5])
+             id_host         lat        long    capacity       price
+id_host   1.00000000 -0.08292466 -0.04766128  0.01948474 -0.07086417
+lat      -0.08292466  1.00000000  0.46514567 -0.04610647 -0.01832434
+long     -0.04766128  0.46514567  1.00000000 -0.04184304 -0.02125458
+capacity  0.01948474 -0.04610647 -0.04184304  1.00000000  0.48392586
+price    -0.07086417 -0.01832434 -0.02125458  0.48392586  1.00000000
+> cor(Hospedaje$lat,Hosp)
+Error in is.data.frame(y) : object 'Hosp' not found
+> cor(Hospedaje$lat,Hospedaje$long,Hospedaje$price)
+Error in cor(Hospedaje$lat, Hospedaje$long, Hospedaje$price) : 
+  invalid 'use' argument
+In addition: Warning message:
+In if (is.na(na.method)) stop("invalid 'use' argument") :
+  the condition has length > 1 and only the first element will be used
+> cor(Hospedaje$lat,Hospedaje$long)
+[1] 0.4651457
+> plot(Hospedaje$lat,Hospedaje$long)
+> cor(Hospedaje$lat,Hospedaje$long)
+[1] 0.4651457
+> cor.test(Hospedaje$lat,Hospedaje$long)
+
+	Pearson's product-moment correlation
+
+data:  Hospedaje$lat and Hospedaje$long
+t = 18.103, df = 1187, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.4193850 0.5085485
+sample estimates:
+      cor 
+0.4651457 
+
+> cor.test(Hospedaje$id_host,Hospedaje$price)
+
+	Pearson's product-moment correlation
+
+data:  Hospedaje$id_host and Hospedaje$price
+t = -2.4476, df = 1187, p-value = 0.01452
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.12720259 -0.01406997
+sample estimates:
+        cor 
+-0.07086417 
+
+> cor.test(Hospedaje$capacity,Hospedaje$price)
+
+	Pearson's product-moment correlation
+
+data:  Hospedaje$capacity and Hospedaje$price
+t = 19.052, df = 1187, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.4391569 0.5262975
+sample estimates:
+      cor 
+0.4839259 
+
+> cor.test(Hospedaje$id_host,Hospedaje$price)
+
+	Pearson's product-moment correlation
+
+data:  Hospedaje$id_host and Hospedaje$price
+t = -2.4476, df = 1187, p-value = 0.01452
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.12720259 -0.01406997
+sample estimates:
+        cor 
+-0.07086417 
+
+> plot(Hospedaje$lat,Hospedaje$long)
+> plot(Hospedaje$capacity,Hospedaje$price)
+> plot(Hospedaje$price,Hospedaje$price)
+> cor.test(Hospedaje$price,Hospedaje$price)
+
+	Pearson's product-moment correlation
+
+data:  Hospedaje$price and Hospedaje$price
+t = Inf, df = 1187, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 1 1
+sample estimates:
+cor 
+  1 
+
+> lm(Hospedaje)
+
+Call:
+lm(formula = Hospedaje)
+
+Coefficients:
+(Intercept)          lat         long     capacity        price  
+  137525378    -38867466     -6963094       197540        -1204  
+
+> plot(Hospedaje$lat,Hospedaje$long)
+> lm(practica)
+Error in stats::model.frame(formula = practica, drop.unused.levels = TRUE) : 
+  object 'practica' not found
+> lm(practica)
+Error in stats::model.frame(formula = practica, drop.unused.levels = TRUE) : 
+  object 'practica' not found
+> lm.resumen = lm(Hospedaje)
+> lm.resumen
+
+Call:
+lm(formula = Hospedaje)
+
+Coefficients:
+(Intercept)          lat         long     capacity        price  
+  137525378    -38867466     -6963094       197540        -1204  
+
+> summary(lm.resumen)
+
+Call:
+lm(formula = Hospedaje)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-25511656  -4631110   1924609   6771190  13310942 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  1.375e+08  2.168e+09   0.063  0.94943   
+lat         -3.887e+07  1.658e+07  -2.345  0.01921 * 
+long        -6.963e+06  1.960e+07  -0.355  0.72241   
+capacity     1.975e+05  9.868e+04   2.002  0.04553 * 
+price       -1.204e+03  3.799e+02  -3.170  0.00156 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 8461000 on 1184 degrees of freedom
+Multiple R-squared:  0.01558,	Adjusted R-squared:  0.01225 
+F-statistic: 4.684 on 4 and 1184 DF,  p-value: 0.0009398
+
+
+> lm(Hospedaje)
+
+Call:
+lm(formula = Hospedaje)
+
+Coefficients:
+(Intercept)          lat         long     capacity        price  
+  137525378    -38867466     -6963094       197540        -1204  
+
+> plot(Hospedaje$lat,Hospedaje$long)
+> lm(practica)
+Error in stats::model.frame(formula = practica, drop.unused.levels = TRUE) : 
+  object 'practica' not found
+> lm(practica)
+Error in stats::model.frame(formula = practica, drop.unused.levels = TRUE) : 
+  object 'practica' not found
+> lm.resumen = lm(Hospedaje)
+> lm.resumen
+
+Call:
+lm(formula = Hospedaje)
+
+Coefficients:
+(Intercept)          lat         long     capacity        price  
+  137525378    -38867466     -6963094       197540        -1204  
+
+> summary(lm.resumen)
+
+Call:
+lm(formula = Hospedaje)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-25511656  -4631110   1924609   6771190  13310942 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  1.375e+08  2.168e+09   0.063  0.94943   
+lat         -3.887e+07  1.658e+07  -2.345  0.01921 * 
+long        -6.963e+06  1.960e+07  -0.355  0.72241   
+capacity     1.975e+05  9.868e+04   2.002  0.04553 * 
+price       -1.204e+03  3.799e+02  -3.170  0.00156 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 8461000 on 1184 degrees of freedom
+Multiple R-squared:  0.01558,	Adjusted R-squared:  0.01225 
+F-statistic: 4.684 on 4 and 1184 DF,  p-value: 0.0009398
+
+> plot(lm.resumen)
+Hit <Return> to see next plot: 
+Hit <Return> to see next plot: 
+Hit <Return> to see next plot: 
+Hit <Return> to see next plot: 
+> 
+> plot(lm.resumen)
+Hit <Return> to see next plot: 
+Hit <Return> to see next plot: 
+Hit <Return> to see next plot: 
+Hit <Return> to see next plot: 
+> 
+> pairlist(Hospedaje)
+[[1]]
+# A tibble: 1,189 x 5
+    id_host   lat  long capacity price
+      <dbl> <dbl> <dbl>    <dbl> <dbl>
+ 1 10022137  21.0 -101.        2  490.
+ 2 10022171  21.0 -101.        3  453.
+ 3 10022200  21.0 -101.        4  671.
+ 4 10023033  21.0 -101.        2  451.
+ 5   102877  21.0 -101.        4 2118.
+ 6  1032843  21.0 -101.        7  200 
+ 7 10390169  21.0 -101.        4  492.
+ 8 10494759  21.0 -101.        4  467.
+ 9 10564399  21.0 -101.        6 1090.
+10 10594656  21.0 -101.        2  381.
+# ... with 1,179 more rows
+
+
+
+> library(readxl)
+> Hospedaje <- read_excel("C:/Lenguaje R/data/Hospedaje.xlsx")
+> View(Hospedaje)
+> str_detect(Hospedaje,"NA")
+Error in str_detect(Hospedaje, "NA") : 
+  could not find function "str_detect"
+> pair
+Error: object 'pair' not found
+> pair(Hospedaje)
+Error in pair(Hospedaje) : could not find function "pair"
+> pairs(Hospedaje)
+> plot(Hospedaje$lat,Hospedaje$capacity)
+> cor(Hospedaje$lat,Hospedaje$long,Hospedaje$price)
+Error in cor(Hospedaje$lat, Hospedaje$long, Hospedaje$price) : 
+  invalid 'use' argument
+In addition: Warning message:
+In if (is.na(na.method)) stop("invalid 'use' argument") :
+  the condition has length > 1 and only the first element will be used
+> cor(Hospedaje$latHospedaje$price)
+Error in cor(Hospedaje$latHospedaje$price) : 
+  supply both 'x' and 'y' or a matrix-like 'x'
+In addition: Warning message:
+Unknown or uninitialised column: 'latHospedaje'. 
+> cor(Hospedaje$lat,Hospedaje$price)
+[1] -0.01832434
+> qqnorm(Hospedaje)
+Error: Must use a vector in `[`, not an object of class matrix.
+Call `rlang::last_error()` to see a backtrace
+> qqnorm(Hospedaje$lat)
+> qqnorm(Hospedaje$lat,Hospedaje$long)
+Error in plot.window(...) : valor de 'ylim' no válido
+> qqnorm(Hospedaje$price)
+> qqnorm(Hospedaje$id_host)
+> qqnorm(Hospedaje$lat)
+> qqnorm(Hospedaje$long)
+> qqnorm(Hospedaje$capacity)
+> qqnorm(Hospedaje$price)
+> qqnorm(Hospedaje$id_host)
+> qqnorm(Hospedaje$lat)
+> qqnorm(Hospedaje$long)
+> qqnorm(Hospedaje$capacity)
+> qqnorm(Hospedaje$price)
+> ?lavarege
+No documentation for ‘lavarege’ in specified packages and libraries:
+you could try ‘??lavarege’
+> ?leverege
+No documentation for ‘leverege’ in specified packages and libraries:
+you could try ‘??leverege’
+> ?leverage
+No documentation for ‘leverage’ in specified packages and libraries:
+you could try ‘??leverage’
+> ?leverage.plot
+No documentation for ‘leverage.plot’ in specified packages and libraries:
+you could try ‘??leverage.plot’
+> leverage.plot
+Error: object 'leverage.plot' not found
+> leverage.plot(Hospedaje)
+Error in leverage.plot(Hospedaje) : 
+  could not find function "leverage.plot"
+> leverage.plot(Hospedaje$price)
+Error in leverage.plot(Hospedaje$price) : 
+  could not find function "leverage.plot"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
